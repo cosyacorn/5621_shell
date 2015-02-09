@@ -15,6 +15,15 @@ then
 fi
 
 #change to all caps
-cd $1	
-`rename 'y/a-z/A-Z/' *`
+cd $1
+echo "files in directory $1 are:"
+ls
+	
+for file in * ; do
+   basename=$(tr '[:lower:]' '[:upper:]' <<< "${file%.*}")
+   newname="$basename.${file#*.}"
+   mv "$file" "$newname"
+done
+echo "the renamed files are:"
+ls
 cd ..	
